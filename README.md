@@ -30,7 +30,9 @@ Los datos son inventados de cero — cero relación con clientes reales.
 ├── css/
 │   └── styles.css   → placeholder
 ├── js/
-│   └── app.js       → placeholder
+│   ├── app.js       → placeholder, orquesta la carga y el pintado
+│   ├── components/  → piezas de UI reutilizables (placeholder)
+│   └── utils/       → funciones auxiliares sin estado (placeholder)
 ├── data/
 │   └── tickets.json → dataset ya listo
 ├── docs/
@@ -45,6 +47,8 @@ Los datos son inventados de cero — cero relación con clientes reales.
 | `index.html` | Punto de entrada de la app en el navegador | La estructura HTML de la bandeja de tickets | Carga `css/styles.css` y `js/app.js`; `js/app.js` lee `data/tickets.json` para pintar la lista |
 | `css/` | Estilos de la interfaz | `styles.css` — reglas visuales, sin lógica | Lo referencia `index.html`; no depende de ninguna otra carpeta |
 | `js/` | Lógica de la interfaz | `app.js` — cargar tickets, filtrar, mostrar ficha, disparar la clasificación con Claude Code | Lee `data/tickets.json`; escribe en el DOM que define `index.html` |
+| `js/components/` | Piezas de interfaz reutilizables | Fila de ticket, ficha de detalle, filtro — cada una en su propio archivo | Las usa `app.js` para montar la pantalla; no acceden a `data/tickets.json` directamente |
+| `js/utils/` | Funciones auxiliares sin estado | Filtrar, formatear fecha, agrupar por zona/sistema | Las usan `app.js` y `components/`; no tocan el DOM |
 | `data/` | El dataset del proyecto | `tickets.json` — las incidencias sintéticas, sin categoría ni prioridad todavía | Lo consume `js/app.js` en el navegador, y Claude Code directamente cuando clasifica los tickets |
 | `docs/` | Los entregables de las Fases 1 y 2 de la Sesión 3 | `spec.md` (requisitos) y `diseno.md` (decisiones de Artifacts) | `spec.md` es la entrada de la Fase 3 (Desarrollo, lo que construye `index.html`/`css`/`js`); `diseno.md` es la salida de la Fase 2 a partir de ese mismo spec |
 | `README.md` | Qué es el proyecto y cómo empezar | Brief del proyecto, esta misma tabla | Es lo primero que lee cualquiera al abrir el repo — humano o Claude Code |
