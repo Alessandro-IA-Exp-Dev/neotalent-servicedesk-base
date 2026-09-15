@@ -1,0 +1,13 @@
+/* Estilos de la interfaz — se construyen en la Sesión 3, Fase 3 (Desarrollo).
+   De momento solo el mínimo para que el placeholder de index.html se lea bien. */
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 640px;
+  margin: 4rem auto;
+  color: #1a1a2e;
+}
+
+.estado {
+  color: #6b6b80;
+}

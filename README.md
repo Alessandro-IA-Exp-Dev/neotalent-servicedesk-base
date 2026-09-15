@@ -22,16 +22,36 @@ Los datos son inventados de cero — cero relación con clientes reales.
 | Sesión 3 | El spec de la funcionalidad (Fase 1), el diseño de las pantallas con Artifacts (Fase 2), y el desarrollo con Claude Code (Fase 3) |
 | Sesión 4 | Tests y validación del dataset (Fase 4), despliegue (Fase 5, con la herramienta que prefieras) y una automatización en n8n para el triaje (Fase 6) |
 
-## Estructura
+## Estructura del repositorio
 
 ```
-data/
-  tickets.json   → ~60 incidencias sintéticas, sin categoría ni prioridad todavía
+/
+├── index.html       → placeholder, se construye en Sesión 3
+├── css/
+│   └── styles.css   → placeholder
+├── js/
+│   └── app.js       → placeholder
+├── data/
+│   └── tickets.json → dataset ya listo
+├── docs/
+│   ├── spec.md       → placeholder (Fase 1)
+│   └── diseno.md      → placeholder (Fase 2)
+├── README.md
+└── CLAUDE.md
 ```
 
-El resto del proyecto (la app en sí) se construye a partir de la Sesión 3. Si estás en la
-Sesión 2: no hace falta que exista código todavía — el reto de hoy es que Claude Code, al abrir
-este repo, te genere un `CLAUDE.md` con lo que ha entendido del proyecto.
+| Carpeta / archivo | Responsabilidad | Qué contiene | Cómo interactúa |
+|---|---|---|---|
+| `index.html` | Punto de entrada de la app en el navegador | La estructura HTML de la bandeja de tickets | Carga `css/styles.css` y `js/app.js`; `js/app.js` lee `data/tickets.json` para pintar la lista |
+| `css/` | Estilos de la interfaz | `styles.css` — reglas visuales, sin lógica | Lo referencia `index.html`; no depende de ninguna otra carpeta |
+| `js/` | Lógica de la interfaz | `app.js` — cargar tickets, filtrar, mostrar ficha, disparar la clasificación con Claude Code | Lee `data/tickets.json`; escribe en el DOM que define `index.html` |
+| `data/` | El dataset del proyecto | `tickets.json` — las incidencias sintéticas, sin categoría ni prioridad todavía | Lo consume `js/app.js` en el navegador, y Claude Code directamente cuando clasifica los tickets |
+| `docs/` | Los entregables de las Fases 1 y 2 de la Sesión 3 | `spec.md` (requisitos) y `diseno.md` (decisiones de Artifacts) | `spec.md` es la entrada de la Fase 3 (Desarrollo, lo que construye `index.html`/`css`/`js`); `diseno.md` es la salida de la Fase 2 a partir de ese mismo spec |
+| `README.md` | Qué es el proyecto y cómo empezar | Brief del proyecto, esta misma tabla | Es lo primero que lee cualquiera al abrir el repo — humano o Claude Code |
+| `CLAUDE.md` | Contexto del proyecto para Claude Code | Se genera en la Sesión 2 | Se genera en la Sesión 2 a partir de lo que Claude Code entienda del resto de archivos |
+
+No hay carpetas de dependencias ni de build — el proyecto es HTML/CSS/JS plano, se abre
+`index.html` directamente en el navegador, sin instalar nada.
 
 ## Cómo empezar (Sesión 2)
 
